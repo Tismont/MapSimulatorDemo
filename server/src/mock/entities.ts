@@ -1,0 +1,45 @@
+import { Entity } from '@shared/simulator'
+
+export const MOCK_ENTITIES: Entity[] = [
+  {
+    id: 'A1',
+    side: 'BLUE',
+    type: 'LightInfantry',
+    callsign: 'A1',
+    position: { lat: 49.6339428, lon: 17.5221244 },
+    task: 'Move',
+    speedKph: 6,
+    damagePct: 0,
+    ammoPct: 80,
+    route: [
+      { lat: 49.6339428, lon: 17.5221244 },
+      { lat: 49.6362, lon: 17.5232 },
+      { lat: 49.639, lon: 17.5241 },
+      { lat: 49.6421, lon: 17.5253 },
+    ],
+  },
+  {
+    id: 'B2',
+    side: 'BLUE',
+    type: 'Tank',
+    callsign: 'B2',
+    position: { lat: 49.6309, lon: 17.5102 },
+    task: 'Idle',
+    speedKph: 0,
+    damagePct: 10,
+    ammoPct: 50,
+    route: [{ lat: 49.6309, lon: 17.5102 }],
+  },
+  {
+    id: 'R1',
+    side: 'RED',
+    type: 'Artillery',
+    callsign: 'R1',
+    position: { lat: 49.655, lon: 17.545 },
+    task: 'Idle',
+    speedKph: 0,
+    damagePct: 0,
+    ammoPct: 90,
+    route: [{ lat: 49.655, lon: 17.545 }],
+  },
+]

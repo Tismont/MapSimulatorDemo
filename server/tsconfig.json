@@ -2,12 +2,18 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "CommonJS",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "lib": ["ES2020"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    "baseUrl": "..",
+    "paths": {
+      "@shared/*": ["types/*"]
+    },
+    "types": ["node"]
   },
-  "include": ["src"]
+  "include": ["src", "../types"]
 }
