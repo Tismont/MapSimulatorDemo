@@ -1,0 +1,9 @@
+.controlButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.controlMeta {
+  opacity: 0.75;
+}

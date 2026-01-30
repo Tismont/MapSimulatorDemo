@@ -1,0 +1,17 @@
+.logPanel {
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.logList {
+  height: 100%;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.logRow {
+  white-space: pre-wrap;
+}
