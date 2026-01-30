@@ -1,4 +1,4 @@
-import { useMemo, useReducer } from 'react'
+import { useMemo, useReducer, useState } from 'react'
 import './app.css'
 import { initialSimState, simReducer } from './store/simulatorStore'
 import { useSimWs } from './hooks/websocketHook'
@@ -6,10 +6,16 @@ import MapPanel from './components/mapPanel/MapPanel'
 import ControlPanel from './components/controlPanel/ControlPanel'
 import UnitInfoPanel from './components/unitInfoPanel/UnitInfoPanel'
 import LogPanel from './components/logPanel/LogPanel'
+import { Group, Panel, Separator } from 'react-resizable-panels'
+import CollapsiblePanel from './components/collapsiblePanel/CollapsiblePanel'
 
 export default function App() {
   const [state, dispatch] = useReducer(simReducer, initialSimState)
   const ws = useSimWs(dispatch)
+
+  const [cControl, setCControl] = useState(false)
+  const [cUnit, setCUnit] = useState(false)
+  const [cLog, setCLog] = useState(false)
 
   const selected = useMemo(() => {
     if (!state.selectedEntityId) return null
@@ -34,23 +40,52 @@ export default function App() {
 
   return (
     <div className="shell">
-      <div className="mapCol">
-        <MapPanel
-          entities={Object.values(state.entities)}
-          selectedId={state.selectedEntityId}
-          onSelect={(id) => dispatch({ type: 'selectEntity', id })}
-          onMapClick={(point) => {
-            if (!state.selectedEntityId) return
-            ws.addWaypoint(state.selectedEntityId, point)
-          }}
-        />
-      </div>
+      <Group orientation="horizontal" className="split">
+        <Panel defaultSize="70%" minSize="40%">
+          <div className="mapCol">
+            <MapPanel
+              entities={Object.values(state.entities)}
+              selectedId={state.selectedEntityId}
+              onSelect={(id) => dispatch({ type: 'selectEntity', id })}
+              onMapClick={(point) => {
+                if (!state.selectedEntityId) return
+                ws.addWaypoint(state.selectedEntityId, point)
+              }}
+            />
+          </div>
+        </Panel>
 
-      <div className="sideCol">
-        <ControlPanel sim={state.sim} ws={ws} />
-        <UnitInfoPanel entity={selected} />
-        <LogPanel log={state.log} />
-      </div>
+        <Separator className="resizeHandle" />
+
+        <Panel defaultSize={300} minSize={240}>
+          <div className="sideCol">
+            <CollapsiblePanel
+              title="Simulation state"
+              collapsed={cControl}
+              onToggle={() => setCControl((v) => !v)}
+            >
+              <ControlPanel sim={state.sim} ws={ws} />
+            </CollapsiblePanel>
+
+            <CollapsiblePanel
+              title="Unit info"
+              collapsed={cUnit}
+              onToggle={() => setCUnit((v) => !v)}
+            >
+              <UnitInfoPanel entity={selected} />
+            </CollapsiblePanel>
+
+            <CollapsiblePanel
+              title="Log"
+              collapsed={cLog}
+              onToggle={() => setCLog((v) => !v)}
+              fill
+            >
+              <LogPanel log={state.log} />
+            </CollapsiblePanel>
+          </div>
+        </Panel>
+      </Group>
     </div>
   )
 }

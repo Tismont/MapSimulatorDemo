@@ -1,16 +1,21 @@
 .shell {
   height: 100%;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 12px;
   padding: 12px;
   box-sizing: border-box;
+  display: block;
+}
+
+.split {
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
 
 .mapCol {
-  min-width: 0;
+  height: 100%;
   min-height: 0;
+  min-width: 0;
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -18,10 +23,30 @@
 }
 
 .sideCol {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-height: 0;
+}
+
+.resizeHandle {
+  width: 10px;
+  cursor: col-resize;
+  position: relative;
+}
+
+.resizeHandle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
 }
 
 .panel {

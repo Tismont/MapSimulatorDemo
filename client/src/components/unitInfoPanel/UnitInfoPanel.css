@@ -1,0 +1,9 @@
+.unitHint {
+  opacity: 0.7;
+}
+
+.unitGrid {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}

@@ -1,0 +1,47 @@
+.cpanel {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cpanelFill {
+  flex: 1;
+  min-height: 0;
+}
+
+.cpanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cpanelTitle {
+  margin-bottom: 0;
+}
+
+.cpanelToggle {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.cpanelToggle:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.cpanelBody {
+  margin-top: 10px;
+  min-height: 0;
+}

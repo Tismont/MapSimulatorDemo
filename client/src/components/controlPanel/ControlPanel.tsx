@@ -9,9 +9,7 @@ export default function ControlPanel({
   ws: { play(): void; pause(): void; stop(): void; step(): void }
 }) {
   return (
-    <div className="panel">
-      <div className="panelTitle">Simulation state</div>
-
+    <>
       <div className="controlButtons">
         <button onClick={ws.play}>▶︎</button>
         <button onClick={ws.pause}>⏸</button>
@@ -25,6 +23,6 @@ export default function ControlPanel({
       <div className="controlMeta">
         Time: <b>{String(sim?.timeSec ?? 0)}s</b>
       </div>
-    </div>
+    </>
   )
 }
